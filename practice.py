@@ -1,0 +1,8 @@
+x=int(input("첫 번째 숫자를 입력하세요"))
+y=int(input("두 번째 숫자를 입력하세요"))
+print("x:", x)
+print("y:", y)
+print("두수의 합:", x+y)
+print("두수의 차:", x-y)
+print("두 수의 곱:", x*y)
+print("두 수의 평균:",)
