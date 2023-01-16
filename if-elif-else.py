@@ -1,8 +1,12 @@
-num=int(input("정수를 입력하시오: "))
+num=int(input("성적을 입력하세요:"))
 
-if num > 0:
-    print("양수입니다.")
-elif num == 0:
-    print("0입니다.")
+if num >= 90:
+    print("A학점 입니다.")
+elif num >= 80:
+    print("B학점 입니다.")
+elif num >= 70:
+    print("C학점 입니다.")
+elif num >= 60:
+    print("D학점 입니다.")
 else:
-    print("음수입니다.")
+    print("F학점 입니다.")
