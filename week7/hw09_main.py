@@ -9,35 +9,80 @@ def count_rain_days(rainfall):
     return total_rain_days
 
 
-# 3) 여름철 (6 월-8월) 총 강수량은 ? sumifs umifs(rainfall, months, selected=[6,7,8]) (rainfall, months, selected=[6,7,8]) (rainfall, months, selected=[6,7,8]) (rainfall, months, selected=[6,7,8]) (rainfall, months, selected=[6,7,8]) (rainfall, months, selected=[6,7,8]) (rainfall, months, selected=[6,7,8])
+# 3) 여름철 (6 월-8월) 총 강수량은 ? sumifs umifs(rainfall, months, selected=[6,7,8])
 def sumifs(rainfall, months, selected=[6,7,8]):
+    days = len(months)
+    total_rainfall = 0
+    for i in range(days):
+        if months[i] in selected:
+            total_rainfall += rainfall[i]
+    return total_rainfall
 
 
-    return -1
+
 
 
 # 4) 최장연속강우일수는 ? longest_rain_days longest_rain_days longest_rain_days longest_rain_days longest_rain_days (rainfall)(rainfall)(rainfall)(rainfall) (rainfall) (rainfall)
 def longest_rain_days(rainfall):
-    return -1
+    rainy_days = []
+    rain = 0
+    for i in rainfall:
+        if i != 0:
+            rain += 1
+        else:
+            rainy_days.append(rain)
+            rain = 0
+    if rain != 0:
+        rainy_days.append(rain)
+    return max(rainy_days)
 
 
 # 5) 강우이벤트 중 최대 강수량은 ? 비가 연속으로 올 때, 하나의 강우 이벤트로 가정
 def maximum_rainfall_event(rainfall):
-    return -1
+    rain_event = 0
+    rain_event_2 = []
+    for i in rainfall:
+        if i > 0:
+            rain_event += i
+        else:
+            rain_event_2.append(rain_event)
+            rain_event = 0
+    return max(rain_event_2)
+
 
 
 # 6) 일교차가 가장 큰날짜와 일교차?
 def maximum_temp_gap(dates, tmax, tmin):
-    return [2021, 1, 20], 23.2
+    gap = 0
+    day = []
+    for i in range(len(dates)):
+        temp_gap = tmax[i] - tmin[i]
+        if temp_gap > gap:
+            gap = temp_gap
+            day = dates[i]
+
+    return day, gap
+
+
+
 
 
 # 7) 적산온도는?
 def gdd(dates, tavg):
-    return -1
+    temp = 0
+    month = [5, 6, 7, 8, 9]
+    for i in range(len(dates)):
+        if dates[i][1] in month:
+            if tavg[i] >= 5:
+                temp += tavg[i]-5
+    return temp
+
+
+
 
 
 def main():
-    f = open("weather(146)_2021-2021.csv")
+    f = open("../week6/weather(146)_2021-2021.csv")
     lines = f.readlines()
     rainfall = [float(x.split(",")[9]) for x in lines[1:]]
     tavg = [float(x.split(",")[4]) for x in lines[1:]]
